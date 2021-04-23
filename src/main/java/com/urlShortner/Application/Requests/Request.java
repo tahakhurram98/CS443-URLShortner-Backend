@@ -10,7 +10,7 @@ public class Request {
     @PrimaryKey
     private UUID id;
 
-    private Integer urlID;
+    private UUID urlID;
     private String requestIP;
     private String countryCode;
     private String requestReferrer;
@@ -20,11 +20,12 @@ public class Request {
 
     }
 
-    public Request(UUID id, Integer urlID, String requestIP, String countryCode, String requestReferrer, long createdAt) {
+    //public Request(UUID id, UUID urlID, String requestIP, String countryCode, String requestReferrer, long createdAt) {
+    public Request(UUID id, UUID urlID, String requestIP, String requestReferrer, long createdAt) {
         this.id = id;
         this.urlID = urlID;
         this.requestIP = requestIP;
-        this.countryCode = countryCode;
+//        this.countryCode = countryCode;
         this.requestReferrer = requestReferrer;
         this.createdAt = createdAt;
     }
@@ -37,11 +38,11 @@ public class Request {
         this.id = id;
     }
 
-    public Integer getUrlID() {
+    public UUID getUrlID() {
         return urlID;
     }
 
-    public void setUrlID(Integer urlID) {
+    public void setUrlID(UUID urlID) {
         this.urlID = urlID;
     }
 
@@ -53,13 +54,13 @@ public class Request {
         this.requestIP = requestIP;
     }
 
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
+//    public String getCountryCode() {
+//        return countryCode;
+//    }
+//
+//    public void setCountryCode(String countryCode) {
+//        this.countryCode = countryCode;
+//    }
 
     public String getRequestReferrer() {
         return requestReferrer;
@@ -83,7 +84,7 @@ public class Request {
                 "id=" + id +
                 ", urlID=" + urlID +
                 ", requestIP='" + requestIP + '\'' +
-                ", countryCode='" + countryCode + '\'' +
+//                ", countryCode='" + countryCode + '\'' +
                 ", requestReferrer='" + requestReferrer + '\'' +
                 ", createdAt=" + createdAt +
                 '}';

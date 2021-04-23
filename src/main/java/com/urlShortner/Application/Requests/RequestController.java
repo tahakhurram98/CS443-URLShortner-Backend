@@ -19,7 +19,7 @@ public class RequestController {
     final long value = 1000L;
 
     @Autowired
-    RequestRepository requestRepository;
+    private RequestRepository requestRepository;
 
     @GetMapping("/Request")
     public ResponseEntity<List<Request>> getAllReqs(@RequestParam(required = false) String title) {
@@ -40,7 +40,7 @@ public class RequestController {
 
     @PostMapping("/Request")
     public @ResponseBody
-    ResponseEntity<Request> addNewRequest(@RequestParam Integer id, @RequestParam String request_ip, @RequestParam String request_referrer) {
+    ResponseEntity<Request> addNewRequest(@RequestParam UUID id, @RequestParam String request_ip, @RequestParam String request_referrer) {
         Request newReq = new Request();
         newReq.setUrlID(id);
         newReq.setRequestIP(request_ip);

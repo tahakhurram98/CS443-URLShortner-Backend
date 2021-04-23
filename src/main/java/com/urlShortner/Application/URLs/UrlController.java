@@ -21,7 +21,7 @@ import java.util.*;
 public class UrlController {
 
     @Autowired
-    UrlRepository urlRepository;
+    private UrlRepository urlRepository;
 
 //    @GetMapping("/Url")
 //    public ResponseEntity<List<Url>> getAllTutorials(@RequestParam(required = false) String title) {
@@ -107,7 +107,7 @@ public class UrlController {
         return new_url;
     }
 
-
+/////
     private String generateURL(int len) {
         String short_url = Generator.generateRandomString(len);
         if (urlRepository.findByShortURL(short_url) != null) { // If random is taken
