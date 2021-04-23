@@ -12,7 +12,7 @@ public class Request {
 
     private UUID urlID;
     private String requestIP;
-    private String countryCode;
+//    private String countryCode;
     private String requestReferrer;
     private long createdAt;
 
@@ -54,14 +54,6 @@ public class Request {
         this.requestIP = requestIP;
     }
 
-//    public String getCountryCode() {
-//        return countryCode;
-//    }
-//
-//    public void setCountryCode(String countryCode) {
-//        this.countryCode = countryCode;
-//    }
-
     public String getRequestReferrer() {
         return requestReferrer;
     }
@@ -76,17 +68,5 @@ public class Request {
 
     public void setCreatedAt(long createdAt) {
         this.createdAt = createdAt;
-    }
-
-    @Override
-    public String toString() {
-        return "Request{" +
-                "id=" + id +
-                ", urlID=" + urlID +
-                ", requestIP='" + requestIP + '\'' +
-//                ", countryCode='" + countryCode + '\'' +
-                ", requestReferrer='" + requestReferrer + '\'' +
-                ", createdAt=" + createdAt +
-                '}';
     }
 }
