@@ -1,14 +1,14 @@
 package com.urlShortner.Application.Users;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-@Table
+@Table("users")
 public class User {
-    @PrimaryKey
-    private UUID id;
+    @PrimaryKey private UUID id;
     private String name;
     private String email;
     private String password;
