@@ -30,12 +30,14 @@ public class UrlController {
 
     @PostMapping(path = "/Url")
     public @ResponseBody
-    Url addNewURL(@RequestParam Integer user_id, @RequestParam String orig_url, @RequestParam String short_url,
+    Url addNewURL(@RequestParam UUID user_id, @RequestParam String orig_url, @RequestParam String short_url,
                   @RequestParam long expires_at, @RequestParam int visitor_limit, @RequestParam int privateLink, HttpServletRequest request) {
 
 //        boolean unauthorized = true;
 //        if (user_id != null && user_id > 0)
 //            unauthorized = false;
+
+        System.out.println(orig_url);
 
         if (orig_url.equals("") || orig_url.trim().equals("")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Original URL cannot be empty.");
@@ -43,7 +45,7 @@ public class UrlController {
 
         Url new_url = new Url();
 //        if(!unauthorized) {
-            new_url.setUserID(user_id);
+//            new_url.setUserID(user_id);
 //        }
 //        else {
 //            new_url.setUserID(null);

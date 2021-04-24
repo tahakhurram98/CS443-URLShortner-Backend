@@ -1,5 +1,6 @@
 package com.urlShortner.Application.Users;
 
+import com.datastax.oss.driver.api.core.uuid.Uuids;
 import com.urlShortner.Application.Requests.Request;
 import com.urlShortner.Application.Users.User;
 import com.urlShortner.Application.Users.UserRepository;
@@ -25,13 +26,16 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/User/Signup")
-    public @ResponseBody
-    User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+//    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
+    public @ResponseBody User addNewUser(@RequestBody User user) {
+        System.out.println("HELLO");
+//        System.out.println(user.getEmail());
 //        String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
         User newUser = new User();
-        newUser.setName(name);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
+        newUser.setId(Uuids.timeBased());
+        newUser.setName(user.getName());
+        newUser.setEmail(user.getEmail());
+        newUser.setPassword(user.getPassword());
         newUser.setCreatedAt(System.currentTimeMillis() / value);
         try {
             newUser = userRepository.save(newUser);
