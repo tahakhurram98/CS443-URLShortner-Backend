@@ -1,0 +1,7 @@
+spring:
+  data:
+    cassandra:
+      port: 9043
+      contact-points: mycassandra
+      keyspace-name: cs443
+#      entity-base-package: com.example.cassandra.springbootcassandrademo.model
