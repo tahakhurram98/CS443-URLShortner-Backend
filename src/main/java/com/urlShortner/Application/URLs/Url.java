@@ -9,16 +9,15 @@ import java.util.UUID;
 public class Url {
     @PrimaryKey
     private UUID id;
-
     private Integer userID;
     private String origURL;
     private String shortURL;
     private long createdAt;
-    private long expiresAt = 0;
-    private String creatorIP;
-    private int visitorCount;
-    private int visitorLimit = 0;
-    private Boolean isCustom = false;
+//    private long expiresAt = 0;
+//    private String creatorIP;
+//    private int visitorCount;
+//    private int visitorLimit = 0;
+//    private Boolean isCustom = false;
 
     public Url() {
 
@@ -31,11 +30,11 @@ public class Url {
         this.origURL = origURL;
         this.shortURL = shortURL;
         this.createdAt = createdAt;
-        this.expiresAt = expiresAt;
-        this.creatorIP = creatorIP;
-        this.visitorCount = visitorCount;
-        this.visitorLimit = visitorLimit;
-        this.isCustom = isCustom;
+//        this.expiresAt = expiresAt;
+//        this.creatorIP = creatorIP;
+//        this.visitorCount = visitorCount;
+//        this.visitorLimit = visitorLimit;
+//        this.isCustom = isCustom;
     }
 
     public UUID getId() {
@@ -78,45 +77,37 @@ public class Url {
         this.createdAt = createdAt;
     }
 
-    public long getExpiresAt() {
-        return expiresAt;
-    }
-
-    public void setExpiresAt(long expiresAt) {
-        this.expiresAt = expiresAt;
-    }
-
-    public String getCreatorIP() {
-        return creatorIP;
-    }
-
-    public void setCreatorIP(String creatorIP) {
-        this.creatorIP = creatorIP;
-    }
-
-    public int getVisitorCount() {
-        return visitorCount;
-    }
-
-    public void setVisitorCount(int visitorCount) {
-        this.visitorCount = visitorCount;
-    }
-
-    public int getVisitorLimit() {
-        return visitorLimit;
-    }
-
-    public void setVisitorLimit(int visitorLimit) {
-        this.visitorLimit = visitorLimit;
-    }
-
-    public Boolean getCustom() {
-        return isCustom;
-    }
-
-    public void setCustom(Boolean custom) {
-        isCustom = custom;
-    }
+//    public long getExpiresAt() {
+//        return expiresAt;
+//    }
+//
+//    public void setExpiresAt(long expiresAt) {
+//        this.expiresAt = expiresAt;
+//    }
+//
+//    public String getCreatorIP() {
+//        return creatorIP;
+//    }
+//
+//    public void setCreatorIP(String creatorIP) {
+//        this.creatorIP = creatorIP;
+//    }
+//
+//    public int getVisitorCount() {
+//        return visitorCount;
+//    }
+//
+//    public void setVisitorCount(int visitorCount) {
+//        this.visitorCount = visitorCount;
+//    }
+//
+//    public int getVisitorLimit() { return visitorLimit; }
+//
+//    public void setVisitorLimit(int visitorLimit) { this.visitorLimit = visitorLimit; }
+//
+//    public Boolean getCustom() { return isCustom; }
+//
+//    public void setCustom(Boolean custom) { isCustom = custom; }
 
     @Override
     public String toString() {
@@ -126,11 +117,11 @@ public class Url {
                 ", origURL='" + origURL + '\'' +
                 ", shortURL='" + shortURL + '\'' +
                 ", createdAt=" + createdAt +
-                ", expiresAt=" + expiresAt +
-                ", creatorIP='" + creatorIP + '\'' +
-                ", visitorCount=" + visitorCount +
-                ", visitorLimit=" + visitorLimit +
-                ", isCustom=" + isCustom +
+//                ", expiresAt=" + expiresAt +
+//                ", creatorIP='" + creatorIP + '\'' +
+//                ", visitorCount=" + visitorCount +
+//                ", visitorLimit=" + visitorLimit +
+//                ", isCustom=" + isCustom +
                 '}';
     }
 }

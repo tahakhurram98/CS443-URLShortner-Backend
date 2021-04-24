@@ -41,7 +41,7 @@ public class UserController {
             newUser = userRepository.save(newUser);
         } catch (DataIntegrityViolationException e) {
             throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Could not signed up.");
+                    HttpStatus.BAD_REQUEST, "Sign Up Failed!");
         }
         return newUser;
     }
