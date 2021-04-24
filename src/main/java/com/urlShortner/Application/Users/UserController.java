@@ -25,7 +25,16 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/User/Signup")
+
+    @GetMapping("/users")
+    public @ResponseBody
+    Iterable<User> getAllUsers() {
+        System.out.println("Testing");
+        return userRepository.findAll();
+    }
+
+
+    @PostMapping("/users/Signup")
 //    public @ResponseBody User addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
     public @ResponseBody User addNewUser(@RequestBody User user) {
         System.out.println("HELLO");
@@ -46,34 +55,18 @@ public class UserController {
         return newUser;
     }
 
-    @GetMapping("/User")
-    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String title) {
-        try {
-            List<User> user = new ArrayList<User>();
-
-            userRepository.findAll().forEach(user::add);
-
-            if (user.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/User")
+    @PostMapping("/users")
     public @ResponseBody
-    User loginUser(@RequestParam String email, @RequestParam String password) {
-        User temp = userRepository.findByEmail(email);
+    User loginUser(@RequestBody User user) {
+        User temp = userRepository.findByEmail(user.getEmail());
         //ObjectMapper mapper = new ObjectMapper();
+        System.out.println("Testing Login");
         if (temp == null) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "User not found.");
         } else {
             //if (BCrypt.checkpw(password, temp.getPassword())) {
-            if(password.compareTo(temp.getPassword()) == 0){ //Comparing the provided password with the user's password
+            if(user.getPassword().compareTo(temp.getPassword()) == 0){ //Comparing the provided password with the user's password
                 return temp;
             } else
                 throw new ResponseStatusException(

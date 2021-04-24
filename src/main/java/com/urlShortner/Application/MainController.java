@@ -29,33 +29,10 @@ public class MainController {
         if(link != null) {
             Url result = urLsRepository.findByShortURL(link);
             if (result != null) {
-                if (result.getExpiresAt() > System.currentTimeMillis() / value) {
-                    if (result.getVisitorLimit() == 0) {
-                        String orig_url = result.getOrigURL();
-                        if (!orig_url.startsWith("http://") && !orig_url.startsWith("https://"))
-                            orig_url = "http://" + orig_url;
-
-                        // Increment view count
-                        result.setVisitorCount(result.getVisitorCount() + 1);
-                        result = urLsRepository.save(result);
-
-                        // Get Referer
-                        String referer = request.getHeader("referer");
-
-                        // Record the new request.
-                        addNewRequest(result.getId(),  request.getRemoteAddr(), referer);
-
-                        HttpHeaders headers = new HttpHeaders();
-                        headers.add("Location", orig_url);
-                        return new ResponseEntity<String>(headers, HttpStatus.PERMANENT_REDIRECT);
-                    } else {
-                        if (result.getVisitorLimit() > result.getVisitorCount()) {
                             String orig_url = result.getOrigURL();
                             if (!orig_url.startsWith("http://") && !orig_url.startsWith("https://"))
                                 orig_url = "http://" + orig_url;
 
-                            // Increment view count.
-                            result.setVisitorCount(result.getVisitorCount() + 1);
                             result = urLsRepository.save(result);
 
                             // Get Referer
@@ -70,17 +47,11 @@ public class MainController {
                         } else {
                             return new ResponseEntity<>("Link has reached the visitor limit.", HttpStatus.NOT_FOUND);
                         }
-                    }
-                } else {
-                    return new ResponseEntity<>("Link has been expired.", HttpStatus.NOT_FOUND);
-                }
+
             } else {
                 return new ResponseEntity<>("Link does not exist.", HttpStatus.NOT_FOUND);
             }
-        } else {
-            return new ResponseEntity<>("Hello.", HttpStatus.I_AM_A_TEAPOT);
         }
-    }
 
     @GetMapping("/")
     public ResponseEntity<?> hello() {
@@ -94,23 +65,6 @@ public class MainController {
         new_request.setRequestReferrer(request_referrer);
         new_request.setCreatedAt(System.currentTimeMillis() / 1000L);
 
-        // Obtaining country code.
-//        HttpGet request = new HttpGet("http://api.ipstack.com/" + request_ip + "?access_key=ff5cc578f42088401b53727c61d7f066");
-//        try (CloseableHttpClient httpClient = HttpClients.createDefault();
-//             CloseableHttpResponse response = httpClient.execute(request)) {
-
-//            HttpEntity entity = response.getEntity();
-//            if (entity != null) {
-//                // return it as a String
-//                String country_response = EntityUtils.toString(entity);
-//                country_response = StringUtils.substringBetween(country_response, "\"country_name\":\"", "\"");
-//                new_request.setCountryCode(Objects.requireNonNullElse(country_response, "N/A"));
-//            } else {
-//                new_request.setCountryCode("N/A");
-//            }
-//        } catch (Exception e) {
-//            new_request.setCountryCode("N/A");
-//        }
 
         try {
             requestsRepository.save(new_request);

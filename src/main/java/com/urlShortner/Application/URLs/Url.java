@@ -5,7 +5,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.util.UUID;
 
-@Table
+@Table("Url")
 public class Url {
     @PrimaryKey
     private UUID id;
