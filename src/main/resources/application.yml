@@ -1,7 +1,9 @@
 spring:
   data:
     cassandra:
-      port: 9043	
-      contact-points: mycassandra
+      port: 9042	
+#      contact-points: cassandra
+      contact-points: 192.168.16.129
       keyspace-name: cs443
-#      entity-base-package: com.example.cassandra.springbootcassandrademo.model
+      schema-action: CREATE_IF_NOT_EXISTS
+      local-datacenter: datacenter1
